@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <cmath>
+#include <limits.h>
+#include <map>
+#include <set>
+#include <queue>
+using namespace std;
+using ll = long long;
+using veci = vector<int>;
+using vecll = vector<ll>;
+using vecd = vector<double>;
+using vveci = vector<veci>;
+using vvecll = vector<vecll>;
+using vvecd = vector<vecd>;
+using Graph = vector<vector<int>>;
+#define rep(i, l, r) for(int i=l; i<r; i++)
+#define rrep(i, l, r) for(int i=r-1; i>=l; i--)
+
+int main() {
+    string S; cin >> S;
+
+    vector<ll> pow26(13);
+    pow26[0] = 1;
+    rep(i, 1, 13) pow26[i] = 26*pow26[i-1];
+
+    ll ans = 0;
+    reverse(S.begin(), S.end());
+    for(ll i=0; i<S.size(); i++) {
+        ll tmp = S[i] - 'A' + 1;
+        ans += tmp*pow26[i];
+    }
+    cout << ans << endl;
+}
